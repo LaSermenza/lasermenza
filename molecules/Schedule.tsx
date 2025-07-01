@@ -2,38 +2,40 @@ import { clsx } from "@koine/utils";
 import { parseISO, format } from "date-fns";
 import { it } from "date-fns/locale";
 
-/**
- * Groups schedule entries by day, and by group if applicable.
- */
-function groupEntriesByDayAndGroup(data: ScheduleData): GroupedSchedule {
-  const grouped: GroupedSchedule = {};
+function groupScheduleByDayAndGroup(
+  entries: ScheduleDataEntry[]
+): GroupedSchedule {
+  const sortedEntries = [...entries].sort(
+    (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+  );
 
-  for (const entry of data.entries) {
-    const startDate =
-      typeof entry.start === "string" ? parseISO(entry.start) : entry.start;
-    const dayKey = format(startDate, "yyyy-MM-dd", { locale: it });
+  const result: GroupedSchedule = {};
 
-    // Initialize day group
-    if (!grouped[dayKey]) {
-      grouped[dayKey] = {};
-    }
+  for (const entry of sortedEntries) {
+    const dayKey = format(entry.start, "yyyy-MM-dd");
 
-    const dayGroup = grouped[dayKey] as Record<string, ScheduleDataEntry[]>;
+    if (!result[dayKey]) result[dayKey] = [];
 
+    const dayEntries = result[dayKey];
+
+    const lastGroup = (() => {
+      for (let i = dayEntries.length - 1; i >= 0; i--) {
+        if (dayEntries[i].type === "group") return (dayEntries[i] as any).name;
+      }
+      return null;
+    })();
+
+    // Handle group separation
     if (entry.group) {
-      if (!dayGroup[entry.group]) {
-        dayGroup[entry.group] = [];
+      if (lastGroup !== entry.group) {
+        dayEntries.push({ type: "group", name: entry.group });
       }
-      dayGroup[entry.group].push(entry);
-    } else {
-      if (!dayGroup["default"]) {
-        dayGroup["default"] = [];
-      }
-      dayGroup["default"].push(entry);
     }
+
+    dayEntries.push({ type: "entry", entry });
   }
 
-  return grouped;
+  return result;
 }
 
 type ScheduleData = {
@@ -51,13 +53,92 @@ type ScheduleDataEntry = {
 };
 
 type GroupedSchedule = {
-  [day: string]:
-    | {
-        [group: string]: ScheduleDataEntry[];
-      }
-    | {
-        default: ScheduleDataEntry[];
-      };
+  [date: string]: Array<
+    | { type: "group"; name: string }
+    | { type: "entry"; entry: ScheduleDataEntry }
+  >;
+};
+
+type DaySectionProps = {
+  date: string;
+  items: GroupedSchedule[string];
+};
+
+const DaySection = (props: DaySectionProps) => {
+  const { date, items } = props;
+  return (
+    <section className="pb-10">
+      <time
+        className={clsx(
+          "text-3xl lg:text-4xl font-mono font-semibold block mb-5 uppercase",
+        )}
+        dateTime={date}
+      >
+        <span className={clsx("pr-4", "text-red-500")}>
+          {format(parseISO(date), "EEEE", { locale: it })}
+        </span>
+        {format(parseISO(date), "dd", { locale: it })}
+        <span className={clsx("text-sm pl-2")}>
+          {format(parseISO(date), "MMMM", { locale: it })}
+        </span>
+      </time>
+      {items.map((item, i) =>
+        item.type === "group" ? (
+          <h3
+            key={`group-${i}`}
+            className={clsx("uppercase py-4 font-bold", "text-gray-400")}
+          >
+            {item.name}
+          </h3>
+        ) : (
+          <div key={`entry-${i}`} className="space-y-2">
+            <ScheduleItem entry={item.entry} />
+          </div>
+        )
+      )}
+    </section>
+  );
+};
+
+type ScheduleItemProps = {
+  entry: ScheduleDataEntry;
+};
+
+const ScheduleItem = (props: ScheduleItemProps) => {
+  const { entry } = props;
+  const timeRange = [
+    entry.showStart !== false ? format(entry.start, "HH:mm") : null,
+    entry.end && entry.showEnd !== false ? format(entry.end, "HH:mm") : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return (
+    <div
+      className={clsx(
+        "flex items-center",
+        "py-3 pr-3 lg:pr-6 border-y-4 break-inside-avoid",
+        "border-transparent hover:border-gray-900"
+      )}
+    >
+      {timeRange && <time
+        className={clsx(
+          "text-xl lg:text-2xl font-light font-mono pr-6",
+          "text-gray-500"
+        )}
+      >
+        {timeRange}
+      </time>}
+      <div>
+        <h4 className={clsx("font-semibold")}>{entry.title}</h4>
+        {entry.description && (
+          <p className={clsx("text-[12px]", "text-gray-600")}>
+            {entry.description}
+          </p>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export type ScheduleProps = React.PropsWithChildren<{
@@ -67,77 +148,16 @@ export type ScheduleProps = React.PropsWithChildren<{
 
 export const Schedule = (props: ScheduleProps) => {
   const { data: raw, children, className, ...rest } = props;
-  const data = groupEntriesByDayAndGroup(raw);
+  const schedule = groupScheduleByDayAndGroup(raw.entries);
+  const sortedDays = Object.keys(schedule).sort();
 
   return (
     <div className={clsx(className, "space-y-12")} {...rest}>
-      {Object.entries(data).map(([day, groups]) => (
-        <div key={day} className="pb-6">
-          <time
-            className={clsx(
-              "text-3xl lg:text-6xl font-mono font-semibold block mb-5 uppercase",
-              "max-lg:px-5",
-              "text-red-500"
-            )}
-            dateTime={day}
-          >
-            {format(parseISO(day), "EEEE dd MMMM", { locale: it })}
-          </time>
-
-          <div className="space-y-10 max-w-4xl">
-            {Object.entries(groups).map(([group, entries]) => (
-              <div key={group} className={clsx(
-                group == "default" ? "bg-gray-100" : "bg-red-100"
-              )}>
-                {group !== "default" && (
-                  <h3
-                    className={clsx("text-xl p-4 font-bold", "text-red-800")}
-                  >
-                    {group}
-                  </h3>
-                )}
-
-                <ul className="space-y-4">
-                  {entries.map((entry, idx) => (
-                    <li
-                      key={idx}
-                      className={clsx(
-                        "flex content-around items-center gap-10",
-                        "p-3 lg:p-5 border-4",
-                        "border-transparent hover:border-gray-900"
-                      )}
-                    >
-                      <time
-                        className={clsx(
-                          "text-2xl lg:text-5xl font-light font-mono",
-                          "text-gray-400"
-                        )}
-                      >
-                        {format(parseISO(entry.start.toString()), "HH:mm")}
-                        {entry.end &&
-                          ` – ${format(
-                            parseISO(entry.end.toString()),
-                            "HH:mm"
-                          )}`}
-                      </time>
-                      <div>
-                        <h4 className={clsx("text-lg font-semibold")}>
-                          {entry.title}
-                        </h4>
-                        {entry.description && (
-                          <p className={clsx("mt-1", "text-gray-600")}>
-                            {entry.description}
-                          </p>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+      <div className="lg:flex gap-10">
+        {sortedDays.map((day) => (
+          <DaySection key={day} date={day} items={schedule[day]} />
+        ))}
+      </div>
     </div>
   );
 };
