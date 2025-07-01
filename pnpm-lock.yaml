@@ -39,6 +39,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.11
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
       '@types/node':
         specifier: ^20
         version: 20.19.1
@@ -866,6 +869,9 @@ packages:
 
   '@types/is-hotkey@0.1.10':
     resolution: {integrity: sha512-RvC8KMw5BCac1NvRRyaHgMMEtBaZ6wh0pyPTBu7izn4Sj/AX9Y4aXU5c7rX8PnM/knsuUpC1IeoBkANtxBypsQ==}
+
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -4878,6 +4884,8 @@ snapshots:
       hoist-non-react-statics: 3.3.2
 
   '@types/is-hotkey@0.1.10': {}
+
+  '@types/js-yaml@4.0.9': {}
 
   '@types/json-schema@7.0.15': {}
 
