@@ -40,7 +40,7 @@ export default function RootLayout({
             className={clsx(
               "absolute -top-[20%] -left-[10%] z-1",
               "w-[80%] h-[20%] -rotate-[10deg]",
-              "bg-black",
+              "bg-black ",
               "border-b-4 border-black"
             )}
           />
@@ -48,7 +48,7 @@ export default function RootLayout({
             className={clsx(
               "absolute -top-[15%] left-[30%] z-1",
               "w-[100%] h-[25%] rotate-[10deg]",
-              "bg-black",
+              "bg-black ",
               "border-b-2 border-black"
             )}
           />
