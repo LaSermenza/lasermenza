@@ -1,3 +1,4 @@
+/* eslint react/no-unescaped-entities: 0 */
 import { Schedule } from "@/molecules";
 import { Button } from "@/cells";
 import scheduleData from "@/content/itm-2025/data.json";

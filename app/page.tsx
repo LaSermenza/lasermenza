@@ -1,3 +1,4 @@
+/* eslint react/no-unescaped-entities: 0 */
 import { clsx } from "@koine/utils";
 import { Button } from "@/cells";
 
