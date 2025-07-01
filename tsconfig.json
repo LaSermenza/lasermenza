@@ -19,7 +19,12 @@
       }
     ],
     "paths": {
-      "@/brain/*": ["./*"]
+      "@/brain/*": ["./*"],
+      "@/cells": ["./cells"],
+      "@/cells/*": ["./cells/*"],
+      "@/content/*": ["./content/*"],
+      "@/molecules": ["./molecules"],
+      "@/molecules/*": ["./molecules*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,0 +1,307 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: /public/uploads
+public_folder: /public
+i18n:
+  structure: multiple_folders
+  locales:
+    - it
+    - en
+    - fr
+  default_locale: it
+collections:
+  - name: posts
+    label: Blog Posts
+    i18n: true
+    folder: content/posts
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - &ref_0
+        label: Title (it)
+        name: title.it
+        widget: string
+      - &ref_1
+        label: Title (en)
+        name: title.en
+        widget: string
+      - &ref_2
+        label: Title (fr)
+        name: title.fr
+        widget: string
+      - &ref_3
+        label: Slug (it)
+        name: slug.it
+        widget: string
+        required: false
+      - &ref_4
+        label: Slug (en)
+        name: slug.en
+        widget: string
+        required: false
+      - &ref_5
+        label: Slug (fr)
+        name: slug.fr
+        widget: string
+        required: false
+      - &ref_6
+        label: Featured Image
+        name: image
+        widget: image
+        required: false
+      - &ref_7
+        label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - label: Image
+            name: image
+            widget: image
+          - label: Caption
+            name: caption
+            widget: string
+            required: false
+          - label: Place
+            name: place
+            widget: string
+            required: false
+          - label: Year
+            name: year
+            widget: number
+            required: false
+          - label: Date
+            name: date
+            widget: datetime
+            required: false
+      - &ref_8
+        label: Body (it)
+        name: body.it
+        widget: markdown
+      - &ref_9
+        label: Body (en)
+        name: body.en
+        widget: markdown
+      - &ref_10
+        label: Body (fr)
+        name: body.fr
+        widget: markdown
+  - name: courses
+    label: Courses
+    i18n: true
+    folder: content/courses
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
+      - label: Location (it)
+        name: location.it
+        widget: string
+      - label: Location (en)
+        name: location.en
+        widget: string
+      - label: Location (fr)
+        name: location.fr
+        widget: string
+      - label: Start Date
+        name: start_date
+        widget: datetime
+      - label: End Date
+        name: end_date
+        widget: datetime
+  - name: schedule
+    label: Schedule
+    i18n: true
+    folder: content/schedule
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
+      - label: Description (it)
+        name: description.it
+        widget: text
+      - label: Description (en)
+        name: description.en
+        widget: text
+      - label: Description (fr)
+        name: description.fr
+        widget: text
+      - label: Date
+        name: date
+        widget: date
+      - label: Start Time
+        name: start_time
+        widget: string
+      - label: End Time
+        name: end_time
+        widget: string
+      - label: Venue
+        name: venue
+        widget: relation
+        collection: venues
+        search_fields:
+          - title.it
+        value_field: slug.it
+        display_fields:
+          - title.it
+      - label: Speakers
+        name: speakers
+        widget: list
+        field:
+          label: Speaker
+          name: speaker
+          widget: relation
+          collection: speakers
+          search_fields:
+            - title.it
+          value_field: slug.it
+          display_fields:
+            - title.it
+  - name: gallery
+    label: Gallery
+    i18n: true
+    folder: content/gallery
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
+      - label: Images
+        name: images
+        widget: list
+        fields:
+          - label: Image
+            name: image
+            widget: image
+          - label: Caption
+            name: caption
+            widget: string
+            required: false
+          - label: Place
+            name: place
+            widget: string
+            required: false
+          - label: Year
+            name: year
+            widget: number
+            required: false
+          - label: Date
+            name: date
+            widget: datetime
+            required: false
+  - name: speakers
+    label: Speakers
+    i18n: true
+    folder: content/speakers
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
+      - label: Role (it)
+        name: role.it
+        widget: string
+      - label: Role (en)
+        name: role.en
+        widget: string
+      - label: Role (fr)
+        name: role.fr
+        widget: string
+  - name: venues
+    label: Venues
+    i18n: true
+    folder: content/venues
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
+      - label: Address (it)
+        name: address.it
+        widget: string
+      - label: Address (en)
+        name: address.en
+        widget: string
+      - label: Address (fr)
+        name: address.fr
+        widget: string
+  - name: pages
+    label: Static Pages
+    i18n: true
+    folder: content/pages
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
