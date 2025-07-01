@@ -35,8 +35,8 @@ export default function Home() {
           >
             Vivere il Paesaggio:{" "}
             <span className="font-mono">
-              l’Architettura Tradizionale Montana e il Valore Comunitario
-              dell’Autocostruzione
+              l'Architettura Tradizionale Montana e il Valore Comunitario
+              dell'Autocostruzione
             </span>
           </h1>
           <div className="flex gap-4">

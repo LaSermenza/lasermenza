@@ -19,20 +19,11 @@ export default function Home() {
           className={clsx(
             "text-5xl md:text-6xl lg:text-8xl uppercase",
             "text-black"
-            // "text-gray-100"
           )}
         >
           <span className="whitespace-nowrap">
             <span className="font-extralight">La </span>
-            <span
-              className={clsx(
-                "font-bold",
-                "text-black"
-                // "text-white"
-              )}
-            >
-              Sermenza
-            </span>
+            <span className={clsx("font-bold", "text-black")}>Sermenza</span>
           </span>
           <span className={clsx("block font-mono text-base lg:text-xl -mt-2")}>
             Associazione La Sermenza APS
@@ -55,10 +46,6 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      {/* <img
-        src="/images/foto-val_sermenza--1920x848-min.jpg"
-        alt="val-sermenza"
-      /> */}
     </main>
   );
 }
