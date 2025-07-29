@@ -1,58 +1,59 @@
 {
   "entries": [
     {
-      "title": "Apertura XXXV CONVEGNO ITM con aperitivo di benvenuto",
+      "title": "Apertura XXXV convegno ITM",
       "description": "Teatro di Rossa",
-      "start": "2025-09-12T19:30:00"
+      "start": "2025-09-12T18:00:00"
     },
     {
       "title": "Intervento del coordinatore di Incontri Tra/Montani",
       "description": "Giancarlo Maculotti",
-      "start": "2025-09-12T20:30:00"
+      "start": "2025-09-12T18:30:00"
     },
     {
       "title": "Saluti delle autorità",
-      "description": "Interventi dei sindaci e rappresentanti istituzionali",
-      "start": "2025-09-12T20:45:00"
+      "description": "Sindaco di Balmuccia, Sindaco di Rossa, Sindaco di Boccioleto, Sindaco di Alto Sermenza, Direttrice Ente Parco Aree Protette Alta Valsesia, Presidente UNCEM Nazionale, Presidente UNCEM Piemonte, Presidente della Provincia, Presidente GAL, Assessore alla Cultura Unione Montana, Presidente Unione Montan",
+      "start": "2025-09-12T18:45:00",
+      "showStart": false
     },
     {
       "title": "Conferenza di Annibale Salsa",
       "description": "L’epopea dei dissodatori: La costruzione del Paesaggio Alpino",
-      "start": "2025-09-12T21:30:00"
-    },
-    {
-      "title": "Attività coordinamento ITM",
-      "description": "Teatro di Balmuccia",
-      "start": "2025-09-12T22:30:00"
+      "start": "2025-09-12T19:00:00"
     },
     {
       "title": "Manuela Baldracchi",
       "description": "L’architettura delle baite di montagna. Espressione autentica dell’autocostruzione",
-      "start": "2025-09-13T09:30:00"
+      "start": "2025-09-13T09:30:00",
+      "group": "Attività coordinamento ITM"
     },
     {
       "title": "Invernizzi Pietro",
       "description": "Interventi su edifici, coperture in pietra e murature a secco delle valli bergamasche",
-      "start": "2025-09-13T10:00:00"
+      "start": "2025-09-13T10:00:00",
+      "group": "Attività coordinamento ITM"
     },
     {
       "title": "Aldo Fezzi",
       "description": "I terrazzamenti della Valle di Sole: Aspetti storici, attuale utilizzo e prospettive",
-      "start": "2025-09-13T10:30:00"
+      "start": "2025-09-13T10:30:00",
+      "group": "Attività coordinamento ITM"
     },
     {
       "title": "Marco Comecini",
       "description": "Architettura popolare Cimbra della Lessinia",
-      "start": "2025-09-13T11:00:00"
+      "start": "2025-09-13T11:00:00",
+      "group": "Attività coordinamento ITM"
     },
     {
       "title": "Marco Zulberti",
       "description": "La metamorfosi del paesaggio architettonico",
-      "start": "2025-09-13T11:30:00"
+      "start": "2025-09-13T11:30:00",
+      "group": "Attività coordinamento ITM"
     },
     {
       "title": "Pranzo",
-      "description": "Foresteria Valsesia, Cerva di Rossa",
+      "description": "Presso Foresteria Valsesia, Cerva di Rossa",
       "start": "2025-09-13T12:30:00"
     },
     {
@@ -63,7 +64,7 @@
     },
     {
       "title": "Gabriella Burlazzi",
-      "description": "Materiali e tecniche nell’edilizia storica montana. Il manuale Gal Valsesia",
+      "description": "Materiali e tecniche nell’edilizia storica montana. Il manuale Gal Valsesia, strumento indispensabile per gli artigiani e i professionisti del recupero dell’edilizia storica",
       "group": "La comunità che costruisce",
       "start": "2025-09-13T15:00:00"
     },
@@ -86,9 +87,9 @@
       "start": "2025-09-13T16:30:00"
     },
     {
-      "title": "Domande e osservazioni dei partecipanti",
+      "title": "Domande e osservazioni dei partecipanti sulle relazioni e le esperienze vissute durante il convegno",
       "description": "Coordina Giancarlo Maculotti",
-      "start": "2025-09-13T16:45:00"
+      "start": "2025-09-13T17:00:00"
     },
     {
       "title": "Tavola rotonda e riunione finale Coordinamento ITM",
@@ -96,7 +97,7 @@
     },
     {
       "title": "Cena",
-      "description": "Trattoria il Giacomaccio, Boccioleto",
+      "description": "Presso Trattoria il Giacomaccio, Boccioleto",
       "start": "2025-09-13T19:00:00"
     },
     {
@@ -107,29 +108,38 @@
     {
       "title": "Visita al Museo del Marmo di Rima",
       "description": "A cura di Roberto Fantoni",
+      "title2": "Roberto Fantoni",
+      "description2": "Visita al Museo del Marmo di Rima a cura della Pro Loco di Rima",
+      "place": "Rima, Alto-Sermenza",
       "start": "2025-09-14T11:00:00"
     },
     {
-      "title": "Conferenza",
-      "description": "‘Materiali e tecniche della tradizione per innovare il settore edilizio’ - Teatro di Boccioleto",
+      "title": "ANAB",
+      "description": "Conferenza ‘I principi dell’architettura naturale: casi studio nell’arco alpino",
       "start": "2025-09-14T10:00:00",
       "end": "2025-09-14T12:00:00"
     },
     {
       "title": "Pranzo",
-      "description": "Ristorante Alpino, Rima, Alto-Sermenza",
+      "description": "Presso Ristorante Alpino, Rima, Alto-Sermenza",
       "start": "2025-09-14T13:00:00"
     },
     {
-      "title": "Seminari dimostrativi sull’edilizia sostenibile",
-      "description": "ANAB - Frazione Piana di Rossa",
+      "title": "ANAB",
+      "description": "Seminari dimostrativi sull’edilizia sostenibile - Frazione Piana di Rossa",
+      "place": "Frazione Piana di Rossa",
       "start": "2025-09-14T14:30:00"
     },
     {
       "title": "Visita alla ‘Casa del Falegname’",
-      "description": "Frazione Piana di Rossa",
-      "start": "2025-09-14T15:30:00",
-      "showStart": false
+      "description": "FAI Valsesia - Frazione Piana di Rossa",
+      "place": "Frazione Piana di Rossa",
+      "start": "2025-09-14T16:00:00"
+    },
+    {
+      "title": "Proiezione del docu-film ‘La ruota sospesa’",
+      "description": "FAI Valsesia - Teatro di Rossa",
+      "start": "2025-09-14T17:30:00"
     }
   ]
 }

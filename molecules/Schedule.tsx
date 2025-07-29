@@ -66,20 +66,22 @@ type DaySectionProps = {
 
 const DaySection = (props: DaySectionProps) => {
   const { date, items } = props;
+  const isoDate = parseISO(date);
+
   return (
-    <section className="pb-10">
+    <section className="pb-10 flex-1">
       <time
         className={clsx(
-          "text-3xl lg:text-4xl font-mono font-semibold block mb-5 uppercase",
+          "text-3xl lg:text-4xl font-mono font-semibold block mb-5 uppercase"
         )}
         dateTime={date}
       >
         <span className={clsx("pr-4", "text-red-500")}>
-          {format(parseISO(date), "EEEE", { locale: it })}
+          {format(isoDate, "EEEE", { locale: it })}
         </span>
-        {format(parseISO(date), "dd", { locale: it })}
+        {format(isoDate, "dd", { locale: it })}
         <span className={clsx("text-sm pl-2")}>
-          {format(parseISO(date), "MMMM", { locale: it })}
+          {format(isoDate, "MMMM", { locale: it })}
         </span>
       </time>
       {items.map((item, i) =>
@@ -106,12 +108,6 @@ type ScheduleItemProps = {
 
 const ScheduleItem = (props: ScheduleItemProps) => {
   const { entry } = props;
-  const timeRange = [
-    entry.showStart !== false ? format(entry.start, "HH:mm") : null,
-    entry.end && entry.showEnd !== false ? format(entry.end, "HH:mm") : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
 
   return (
     <div
@@ -121,23 +117,79 @@ const ScheduleItem = (props: ScheduleItemProps) => {
         "border-transparent hover:border-gray-900"
       )}
     >
-      {timeRange && <time
+      <ScheduleItemTime entry={entry} />
+      <ScheduleItemContent entry={entry} />
+    </div>
+  );
+};
+
+type ScheduleItemTimeProps = {
+  entry: ScheduleDataEntry;
+};
+
+const ScheduleItemTime = (props: ScheduleItemTimeProps) => {
+  const { entry } = props;
+  const timeRange = [
+    entry.showStart !== false ? format(entry.start, "HH:mm") : null,
+    entry.end && entry.showEnd !== false ? format(entry.end, "HH:mm") : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return (
+    timeRange && (
+      <time
         className={clsx(
           "text-xl lg:text-2xl font-light font-mono pr-6",
           "text-gray-500"
         )}
       >
         {timeRange}
-      </time>}
-      <div>
-        <h4 className={clsx("font-semibold")}>{entry.title}</h4>
-        {entry.description && (
-          <p className={clsx("text-[12px]", "text-gray-600")}>
-            {entry.description}
-          </p>
-        )}
-      </div>
+      </time>
+    )
+  );
+};
+
+type ScheduleItemContentProps = {
+  entry: ScheduleDataEntry;
+};
+
+const ScheduleItemContent = (props: ScheduleItemContentProps) => {
+  const { entry } = props;
+
+  return (
+    <div>
+      <ScheduleItemContentTitle entry={entry} />
+      <ScheduleItemContentDescription entry={entry} />
     </div>
+  );
+};
+
+type ScheduleItemContentTitleProps = {
+  entry: ScheduleDataEntry;
+};
+
+const ScheduleItemContentTitle = (props: ScheduleItemContentTitleProps) => {
+  const { entry } = props;
+
+  return <h4 className={clsx("font-semibold")}>{entry.title}</h4>;
+};
+
+type ScheduleItemContentDescriptionProps = {
+  entry: ScheduleDataEntry;
+};
+
+const ScheduleItemContentDescription = (
+  props: ScheduleItemContentDescriptionProps
+) => {
+  const { entry } = props;
+
+  return (
+    entry.description && (
+      <p className={clsx("text-[12px]", "text-gray-600")}>
+        {entry.description}
+      </p>
+    )
   );
 };
 

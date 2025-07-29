@@ -1,5 +1,5 @@
 /* eslint react/no-unescaped-entities: 0 */
-import { Schedule } from "@/molecules";
+import { Schedule, SectionTItle } from "@/molecules";
 import { Button } from "@/cells";
 import scheduleData from "@/content/itm-2025/data.json";
 import { clsx } from "@koine/utils";
@@ -42,9 +42,7 @@ export default function Home() {
           </h1>
           <div className="flex gap-4">
             <Button
-              className={
-                clsx()
-              }
+              className={clsx()}
               variant="solid"
               color="primary"
               as="a"
@@ -53,18 +51,14 @@ export default function Home() {
               guarda il programma
             </Button>
             <Button
-              className={
-                clsx()
-              }
+              className={clsx()}
               as="a"
               href="/content/itm-2025/ITM-2025-Locandina.pdf"
             >
               scarica la locandina
             </Button>
             <Button
-              className={
-                clsx()
-              }
+              className={clsx()}
               variant="solid"
               color="accent"
               as="a"
@@ -76,13 +70,7 @@ export default function Home() {
         </div>
       </section>
       <section className="px-6 min-h-screen">
-        <div
-          className={clsx(
-            "mx-auto max-w-5xl text-3xl lg:text-6xl uppercase leading-[1.2em] pb-10"
-          )}
-        >
-          Il convegno
-        </div>
+        <SectionTItle>Il convegno</SectionTItle>
         <div
           className={clsx(
             "text-[12px] max-w-4xl mx-auto flex flex-col gap-14 font-bold",
@@ -142,13 +130,7 @@ export default function Home() {
         </div>
       </section>
       <section id="programma" className="px-6 min-h-screen">
-        <div
-          className={clsx(
-            "mx-auto max-w-5xl text-3xl lg:text-6xl uppercase leading-[1.2em] pb-20"
-          )}
-        >
-          Programma
-        </div>
+        <SectionTItle>Programma</SectionTItle>
         {/* <p className={clsx("text-6xl uppercase font-bold mb-20", "text-black")}>Programma</p> */}
         <Schedule data={scheduleData} />
       </section>
